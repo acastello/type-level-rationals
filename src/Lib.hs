@@ -27,10 +27,11 @@ type family KnownRat r :: Constraint where
 data SomeRat = forall (r :: Rat). KnownRat r => SomeRat (Proxy r)
 
 ratVal :: KnownRat (n ':% d) => proxy (n ':% d) -> Rational
-ratVal (_ :: proxy (n ':% d)) = 
+ratVal (_ :: proxy (n ':% d)) =
     natVal (Proxy :: Proxy n) :% natVal (Proxy :: Proxy d)
 
 someRatVal :: Rational -> Maybe SomeRat
 someRatVal (n :% d) = liftM2 cast (someNatVal n) (someNatVal d)
   where cast (SomeNat (_ :: Proxy n)) (SomeNat (_ :: Proxy d)) =
             SomeRat (Proxy :: Proxy (n ':% d))
+
