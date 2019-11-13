@@ -9,11 +9,11 @@ type-level rationals:
 
 > import Data.Kind.Rat
 >
-> data R (r :: Rat)
-> myR :: R (3 ':% 2)
+> data R (r :: Rat) = ConstR
+> myR = ConstR :: R (3 ':% 2)
 
->>> ratVal
-3
+>>> ratVal myR
+1.5
 
 -}
 
@@ -62,4 +62,3 @@ someRatVal :: Rational -> Maybe SomeRat
 someRatVal (n :% d) = liftM2 cast (someNatVal n) (someNatVal d)
   where cast (SomeNat (_ :: Proxy n)) (SomeNat (_ :: Proxy d)) =
             SomeRat (Proxy :: Proxy (n ':% d))
-
