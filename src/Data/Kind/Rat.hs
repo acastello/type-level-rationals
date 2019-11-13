@@ -17,7 +17,7 @@ type-level rationals:
 
 -}
 
-module Lib
+module Data.Kind.Rat
     ( Rat
     , type (%)
     , KnownRat
