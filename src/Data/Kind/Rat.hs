@@ -19,7 +19,6 @@ type-level rationals:
 
 module Data.Kind.Rat
     ( Rat
-    , type (%)
     , KnownRat
     , SomeRat (SomeRat)
     , ratVal
@@ -31,17 +30,12 @@ import Control.Monad
 
 import Data.Kind
 import Data.Proxy
-import GHC.Real (Ratio ((:%)))
-import qualified GHC.Real as R ((%))
+import GHC.Real
 
 import GHC.TypeLits
 
 -- | Type synonym for use in kind specs.
 type Rat = Ratio Nat
-
--- | Type constructor synonym. Unlike the value operator, this doesn't reduce
--- the terms.
-type n % d = n ':% d
 
 -- | type family to abbreviate constraints from
 --
@@ -58,7 +52,7 @@ type family KnownRat r :: Constraint where
 -- Note: 'ratVal' always reduces the resulting Rational.
 ratVal :: KnownRat (n ':% d) => proxy (n ':% d) -> Rational
 ratVal (_ :: proxy (n ':% d)) =
-    natVal (Proxy :: Proxy n) R.% natVal (Proxy :: Proxy d)
+    natVal (Proxy :: Proxy n) :% natVal (Proxy :: Proxy d)
 
 -- | This type represents unknown type-level rationals.
 data SomeRat = forall (r :: Rat). KnownRat r => SomeRat (Proxy r)
