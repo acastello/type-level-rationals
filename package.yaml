@@ -1,23 +1,22 @@
 name:                type-level-rationals
-version:             0.1.0.0
-github:              "githubuser/type-level-rationals"
+version:             0.1.1.0
+github:              "acastello/type-level-rationals"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2019 Author name here"
+author:              "Alejandro Castelló"
+maintainer:          "ap.castello@protonmail.com"
+copyright:           "2019 Alejandro Castelló"
 
 extra-source-files:
 - README.md
-- ChangeLog.md
 
 # Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
+synopsis:            Type-level rational literals constructed from Nats.
+category:            Types
 
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/type-level-rationals#readme>
+description:         Please see the README on GitHub at <https://github.com/acastello/type-level-rationals#readme>
 
 dependencies:
 - base >= 4.7 && < 5
